@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import * as Shell from '../services/shell'
 
+var value
+
 export default connect(state => {
     var { stdout, stderr } = state.data
     return {
@@ -11,7 +13,10 @@ export default connect(state => {
 })(({ stdout, stderr }) => (
     <div>
         <div>
-            <input />
+            <input onChange={ev => value = ev.target.value} onKeyDown={ev => {
+                if (ev.keyCode === 13) runCurrent()
+            }} />
+            <button onClick={runCurrent}>exec</button>
         </div>
         <div>
             <pre>{stdout}</pre>
@@ -19,3 +24,7 @@ export default connect(state => {
         </div>
     </div>
 ))
+
+function runCurrent() {
+    Shell.run(value)
+}

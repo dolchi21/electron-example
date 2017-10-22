@@ -3,7 +3,7 @@ import store from '../store'
 
 function shell(cmd) {
     return new Promise((resolve, reject) => {
-        exec('ls -lh', (err, stdout, stderr) => {
+        exec(cmd, (err, stdout, stderr) => {
             err ? reject(stderr) : resolve(stdout)
         })
     })
@@ -22,5 +22,3 @@ export function run(cmd) {
         })
     })
 }
-
-run('ls -lh')

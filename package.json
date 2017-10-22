@@ -19,6 +19,7 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "rxjs": "^5.5.0",
     "sequelize": "^4.15.1",
     "sqlite3": "^3.1.13"
   },

@@ -1,5 +1,4 @@
 import Sequelize from 'sequelize'
-
 import store from '../store'
 
 export function connection() {
