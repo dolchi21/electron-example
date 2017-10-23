@@ -1,14 +1,5 @@
-import Sequelize from 'sequelize'
+import sequelize from '../../sequelize'
 import store from '../store'
-
-export function connection() {
-    var sequelize = new Sequelize('master', 'root', 'password', {
-        dialect: 'sqlite',
-        storage: './db.sqlite'
-    })
-    return sequelize
-}
-var sequelize = connection()
 
 export default sequelize
 
@@ -21,5 +12,11 @@ export function runSQL() {
                 sqlResult: rs
             }
         })
+    })
+}
+
+export function sync() {
+    return sequelize.sync({
+        force: true
     })
 }

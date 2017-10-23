@@ -12,6 +12,10 @@ var reducer = combineReducers({
     }
 })
 
-var store = createStore(reducer, {})
+var store = createStore(reducer, {
+    data: {
+        sql: 'SELECT * FROM "Tasks"'
+    }
+})
 
 export default store

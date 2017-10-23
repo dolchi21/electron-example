@@ -1,5 +1,8 @@
 var Rx = require('rxjs')
+var sequelize = require('../../sequelize')
 var Task = require('async-task')
+
+var TaskData = sequelize.model('Task')
 
 var T = Task.create()
 
@@ -11,13 +14,22 @@ const longComputation = () => {
     return sum
 }
 
-T.main(async function main() {
+async function main() {
+
+    var td = await TaskData.create({
+        pid: process.pid,
+        name: 'compute.js'
+    })
 
     var documents = longComputation()
     await T.resolve(documents)
 
-})
+    await td.update({ exitCode: 0 })
 
-setInterval(() => {
-    console.log(process.pid)
-}, 1000)
+}
+
+T.main(() => {
+    main().catch(err => {
+        T.message(err)
+    })
+})

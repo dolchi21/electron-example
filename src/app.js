@@ -6,6 +6,7 @@ import store from './store'
 import ExecSQLButton from './containers/ExecSQLButton'
 import SQLStatement from './containers/SQLStatement'
 import SQLResult from './containers/SQLResult'
+import SyncButton from './containers/DB/SyncButton'
 import Commands from './containers/Commands'
 
 store.subscribe(() => console.log(store.getState()))
@@ -19,10 +20,11 @@ class App extends React.Component {
                     <div>
                         <SQLStatement />
                         <ExecSQLButton />
+                        <SyncButton />
                         <SQLResult />
                     </div>
                     <div>
-                        <Commands/>
+                        <Commands />
                     </div>
                 </div>
             </Provider >
