@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 export default connect(state => {
-    return {}
+    return {
+        value: state.data.sql
+    }
 }, dispatch => {
     return {
         onChange(ev) {
@@ -16,5 +18,5 @@ export default connect(state => {
         }
     }
 })(props => {
-    return <input type="text" onChange={props.onChange} />
+    return <input type="text" onChange={props.onChange} defaultValue={props.value} />
 })
